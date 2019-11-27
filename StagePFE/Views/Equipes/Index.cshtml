@@ -1,0 +1,50 @@
+﻿@model StagePFE.Models.CongesViewModels
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutChefProjet.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDebut)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.IdMembre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departement)
+        </th>*@
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Demande) {
+    <tr>
+        <td>
+            @item.DateDebut.Value.ToShortDateString()
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employe.Nom)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Departement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departements.NomDepartement)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,264 @@
+﻿@model StagePFE.Models.Employe
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<main class="main-content p-5" role="main">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Profile</h1>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-6 mb-5">
+            <div class="card">
+                <div class="card-header">
+                    1. Informations personnelles
+                </div>
+                <div class="card-body">
+                   
+                        <div class="form-group">
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Nom)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Nom)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Prenom)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Prenom)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Poste)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Poste)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DateRecrutement)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DateRecrutement)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DateNaissance)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DateNaissance)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Sexe)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Sexe)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Telephone)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Telephone)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Adresse)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Adresse)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Cin)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Cin)
+                                </dd>
+
+                                
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.AspNetUsers.Email)
+                                </dd>
+
+                                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                                @Html.ActionLink("Back to List", "Index")
+
+                            </dl>
+                        </div>
+                        
+                        
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12 mb-5">
+                    <div class="card">
+                        <div class="card-header">
+                            2. Informations recrutement
+                        </div>
+                        <div class="card-body">
+                            <dl>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DateRecrutement)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DateRecrutement)
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-12 mb-5">
+                    <div class="card">
+                        <div class="card-header">
+                            3. Informations poste
+                        </div>
+                        <div class="card-body">
+                           
+                                <div class="form-group">
+                                    <dl>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.IdEquipe)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.IdEquipe)
+                                        </dd>
+
+                                    </dl>
+                                </div>
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+
+    </main>
+
+    @*<dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Prenom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Prenom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Poste)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Poste)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateRecrutement)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateRecrutement)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateNaissance)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateNaissance)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sexe)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sexe)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Telephone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Adresse)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Adresse)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Cin)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cin)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IdEquipe)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IdEquipe)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AspNetUsers.Email)
+            </dd>
+
+        </dl>
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>*@
+

@@ -1,0 +1,70 @@
+﻿@model StagePFE.Areas.Ingenieur.Models.AccueilViewModel
+@{
+    ViewBag.Title = "Accueil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CurrentController = "Accueil";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="header text-center">
+
+
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-warning card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">face</i>
+                                </div>
+                                <p class="card-category text-dark font-weight-bold">Date recrutement</p>
+                                <h3 class="card-title">@Model.Employes.First().DateRecrutement.Value.ToShortDateString()
+                                </h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons text-danger">warning</i>
+                                    Nombre des employés
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-danger card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">supervisor_account</i>
+                                </div>
+                                <p class="card-category text-dark font-weight-bold">Equipe</p>
+                                <h3 class="card-title">@Model.Equipe.First().Departements.NomDepartement</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">local_offer</i> Mon Equipe
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-success card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">library_books</i>
+                                </div>
+                                <p class="card-category text-dark font-weight-bold">Mes Demandes </p>
+                                <h3 class="card-title">@Model.Demande.Count()</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">date_range</i> Nombre de demande en cours
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

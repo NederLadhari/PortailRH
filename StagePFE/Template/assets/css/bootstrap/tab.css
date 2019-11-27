@@ -1,0 +1,29 @@
+﻿/*.panel {
+	margin: 5%;
+	background: transparent;
+}
+
+
+tr {
+	transition: all 0.5s;
+}
+
+	tr:hover {
+		background-color: #f0ad4e;
+		transition: 0.5s;
+	}
+
+.btn-warning {
+	transition: all 0.8s;
+}
+
+	.btn-warning:hover, .btn-warning:focus {
+		transition: 0.8s;
+		background-color: #428bca;
+		border-color: #428bca;
+	}
+
+.panel-footer {
+	background-color: #5bc0de;
+	color: white;
+}*/

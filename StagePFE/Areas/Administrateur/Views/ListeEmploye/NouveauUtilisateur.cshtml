@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "NouveauUtilisateur";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+ 
+<main class="main-content p-5" role="main">
+    <div class="row">
+        <div class="col-md-12">
+            
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Ajouter un employe
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-sm bg-gradient" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="card-form-wizard">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div id="rootwizard-1">
+                                <ul class="nav nav-pills wizard-header">
+                                    <li>
+                                        <a href="#tab1" data-toggle="tab">
+                                            <span class="main-text">
+                                                <span class="h3">1. Création</span>
+                                                <small>This step has validation</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab2" data-toggle="tab">
+                                            <span class="main-text">
+                                                <span class="h3">2. Informations</span>
+                                                <small>No validation required</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab3" data-toggle="tab">
+                                            <span class="main-text">
+                                                <span class="h3">3. Review Data</span>
+                                                <small>Here's a summary of what you entered.</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab4" data-toggle="tab">
+                                            <span class="main-text">
+                                                <span class="h3">4. Terminer</span>
+                                                <small>You're done!</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content clearfix">
+                                    <div class="tab-pane" id="tab1">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <form method="post" id="wizard-stage-1">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Username</label>
+                                                        <input type="text" class="form-control wizard-stage-1-username" name="username" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Email address</label>
+                                                        <input type="text" class="form-control wizard-stage-1-email" name="email" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Password</label>
+                                                        <input type="password" class="form-control wizard-stage-1-password" name="password" />
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <form method="post" id="wizard-stage-2">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Telephone</label>
+                                                        <input type="text" class="form-control wizard-stage-2-optional-1" name="username" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Your Address</label>
+                                                        <input type="text" class="form-control wizard-stage-2-optional-2" name="email" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Write something about yourself</label>
+                                                        <textarea class="form-control wizard-stage-2-optional-3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab3">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-wizard-review-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab4">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h2>You're Done!</h2>
+                                                <p>Thanks for filling out this form. We'll get back to you shortly.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="pager wizard">
+                                        <li class="previous first" style="display:none;">
+                                            <a class="btn btn-light" href="#">
+                                                <i class="batch-icon batch-icon-arrow-left"></i>
+                                                First
+                                            </a>
+                                        </li>
+                                        <li class="previous">
+                                            <a class="btn btn-secondary" href="#">
+                                                <i class="batch-icon batch-icon-arrow-left"></i>
+                                            </a>
+                                        </li>
+                                        <li class="next last" style="display:none;">
+                                            <a class="btn btn-primary" href="#">Last</a>
+                                        </li>
+                                        <li class="next">
+                                            <a class="btn btn-primary" href="#">
+                                                Next
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <footer>
+                Powered by - <a href="http://base5builder.com/?click_source=quillpro_footer_link" target="_blank" style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Base<span style="color:#ffa733;font-weight:bold">5</span>Builder</a>
+            </footer>
+        </div>
+    </div>
+</main>
+
+

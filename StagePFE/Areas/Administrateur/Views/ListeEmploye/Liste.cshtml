@@ -1,0 +1,58 @@
+﻿@model StagePFE.Models.CongesViewModels
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main style="background-color:white" class="main-content p-5" role="main">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="col-md-6 pb-5">
+
+
+                <table style="width:950px" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Date de naissance</th>
+                            <th>Cin</th>
+                            <th>Email</th>
+                            <th>Numero</th>
+                            <th>Role</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Employe)
+                        {
+                            <tr>
+
+                                <td><center>@Html.DisplayFor(modelItem => item.Id)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.Nom)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.Prenom)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.DateNaissance)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.Cin)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.AspNetUsers.Email)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.Telephone)</center></td>
+                                @*<td><center>@Html.DisplayFor(modelItem => item.NombreJours)</center></td>*@
+                                <td>
+                                    @Html.ActionLink("Modifier", "AccepterDemande", new { id = item.Id }) |
+                                    @Html.ActionLink("Supprimer", "RejetterDemande", new { id = item.Id })
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+

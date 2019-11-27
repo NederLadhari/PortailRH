@@ -1,0 +1,60 @@
+﻿@model StagePFE.Models.CongesViewModels
+@{
+    ViewBag.Title = "DetailDemande";
+    Layout = "~/Views/Shared/_LayoutChef.cshtml";
+}
+
+<div class="panel-heading">
+
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Demande en attente
+                </div>
+                <div class="card-table table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="thead-light">
+                            <tr>
+                            <tr>
+                                <th></th>
+                                
+                                <th class="text-center">Date Debut</th>
+                                <th class="text-center">Date Fin</th>
+                                <th class="text-center">Motif</th>
+                                <th class="text-center">Date Demande</th>
+                                <th class="text-center">Type</th>
+                                <th class="text-center">Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Demande)
+                            {
+                                <tr>
+                                    <td><center>@Model.Demande.Count()</center></td>
+                                    @*<td><center>@Html.DisplayFor(modelItem => item.Id)</center></td>*@
+                                    
+                                    <td><center><div class="heading mt-1">@item.DateDebut.Value.ToShortDateString()</div></center></td>
+                                    <td><center><div class="heading mt-1">@item.DateFin.Value.ToShortDateString()</div></center></td>
+                                    <td><center><div class="heading mt-1">@Html.DisplayFor(modelItem => item.Motif)</div></center></td>
+                                    <td><center><div class="heading mt-1">@item.DateDemande.Value.ToShortDateString()</div></center></td>
+                                    <td><center><div class="heading mt-1">@Html.DisplayFor(modelItem => item.Types.Nom)</div></center></td>
+                                    <td><center><div class="heading mt-1">@Html.DisplayFor(modelItem => item.Etat)</div></center></td>
+
+                                    
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                    <i class="batch-icon batch-icon-layout-content-left"></i> @Html.ActionLink("Back to List", "EnAttente")
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "MesDemandes";
+    Layout = "~/Views/Shared/_LayoutIngenieur.cshtml";
+}
+
+<h2>MesDemandes</h2>
+
+
+
+@model StagePFE.Models.CongesViewModels
+<button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sizes">Ajouter</button>
+
+<main style="background-color:white" class="main-content p-5" role="main">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="col-md-6 pb-5">
+
+
+                <table style="width:950px" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date Debut</th>
+                            <th>Date Fin</th>
+                            <th>Motif</th>
+                            <th>Date Demande</th>
+                            <th>type</th>
+                            <th>Nombre de jours</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Demande)
+                        {
+                            <tr>
+                                <td><center>@Html.DisplayFor(modelItem => item.Id)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.DateDebut)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.DateFin)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.Motif)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.DateDemande)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.Types.Nom)</center></td>
+                                <td><center>@Html.DisplayFor(modelItem => item.NombreJours)</center></td>
+                                <td>
+                                    @Html.ActionLink("Modifier", "AccepterDemande", new { id = item.Id}) |
+                                    @Html.ActionLink("Supprimer", "RefuserDemande", new { id = item.Id })
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+
+
+
+
+
+
+<!-- Modal -->
+
+
+<div class="modal fade bd-example-modal-sizes" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter une nouvelle demande de congé</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("AjouterConge", "DemandeConge", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                { @Html.AntiForgeryToken()
+
+
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.DateDebut, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.DateDebut, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.DateFin, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.DateFin, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Nombre, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Motif, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.Motif, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    @Html.LabelFor(m => m.Type, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.EnumDropDownListFor(model => model.NomType)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                    </div>
+
+                                </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

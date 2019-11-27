@@ -1,0 +1,323 @@
+﻿@model StagePFE.Models.CongesViewModels
+@{
+    ViewBag.Title = "EnAttente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CurrentController = "EnAttente";
+    }
+
+
+
+
+<div class="content">
+    @*<button class="btn btn-danger btn-fill" onclick=demo.showSwal('input-field')>Ajouter</button>*@
+    @*<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalGrid">
+
+
+            Ajouter
+        </button>*@
+
+    <br>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-danger card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <h4 class="card-title">Mes demandes</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="toolbar">
+                                
+                            </div>
+                            <div class="material-datatables">
+
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                    <thead>
+                                        <tr>
+
+                                            <th class="text-center font-weight-bold">Employé</th>
+                                            <th class="text-center font-weight-bold">Date Debut</th>
+                                            <th class="text-center font-weight-bold">Date Fin</th>
+                                            <th class="text-center font-weight-bold">Motif</th>
+                                            <th class="text-center font-weight-bold">Date Demande</th>
+                                            <th class="text-center font-weight-bold">Type</th>
+                                            <th class="disabled-sorting text-right font-weight-bold">Action</th>
+
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+
+                                            <th >Employé</th>
+                                            <th >Date Debut</th>
+                                            <th >Date Fin</th>
+                                            <th>Motif</th>
+                                            <th >Date Demande</th>
+                                            <th>Type</th>
+                                            <th class=" text-right">Action</th>
+
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+
+                                        @foreach (var item in Model.Demande)
+                                        {
+
+                                            <tr>
+
+                                                <td>@Html.DisplayFor(modelItem => item.Employe.Nom) @Html.DisplayFor(modelItem => item.Employe.Prenom) </td>
+                                                <td>@item.DateDebut.Value.ToShortDateString()</td>
+                                                <td>@item.DateFin.Value.ToShortDateString()</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Motif)</td>
+                                                <td>@item.DateDemande.Value.ToShortDateString()</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Types.Nom)</td>
+                                                <td class="td-actions text-right">
+                                                    <button type="button" rel="tooltip" class="btn btn-info btn-link" data-toggle="modal" data-target="#L_@item.Id">
+                                                        <i class="material-icons">notes</i>
+                                                    </button>
+                                                    
+                                                    <a href="#" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a>
+                                                    <button type="button" rel="tooltip" class="btn btn-info btn-link btn-success" onclick="sweet(@item.Id);">
+                                                        <i class="material-icons">done</i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end content-->
+            </div><!--  end card  -->
+        </div> <!-- end col-md-12 -->
+    </div> <!-- end row -->
+
+
+
+
+    @foreach (var item in Model.Demande)
+    {
+        <div class="modal" id="L_@item.Id" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        @*<h4 class="modal-title">Ajouter une nouvelle demande</h4>*@
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="material-icons">clear</i>
+
+                    </button>
+                </div>
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header card-header-danger card-header-icon">
+                                            
+                                            <h4 class="card-title">Historique des demandes</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="toolbar">
+
+                                            </div>
+                                            <div class="material-datatables">
+
+                                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+
+                                                            
+                                                            <th class="text-center font-weight-bold">Date Debut</th>
+                                                            <th class="text-center font-weight-bold">Date Fin</th>
+                                                            <th class="text-center font-weight-bold">Motif</th>
+                                                            <th class="text-center font-weight-bold">Type</th>
+                                                            <th class="text-center font-weight-bold">Etat</th>
+                                                           
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+
+                                                            
+                                                            <th>Date Debut</th>
+                                                            <th>Date Fin</th>
+                                                            <th>Motif</th>
+                                                            <th>Type</th>
+                                                            <th>Etat</th>
+                                                            
+
+                                                        </tr>
+                                                    </tfoot>
+                                                    <tbody>
+
+
+                                                       
+
+                                                            <tr>
+
+                                                                
+                                                                <td>@item.DateDebut.Value.ToShortDateString()</td>
+                                                                <td>@item.DateFin.Value.ToShortDateString()</td>
+                                                                <td>@Html.DisplayFor(modelItem => item.Motif)</td>
+                                                                <td>@Html.DisplayFor(modelItem => item.Types.Nom)</td>
+                                                                <td>@Html.DisplayFor(modelItem => item.Etat)</td>
+                                                                
+                                                            </tr>
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end content-->
+                            </div><!--  end card  -->
+                        </div> <!-- end col-md-12 -->
+                    </div> <!-- end row -->
+
+
+            </div>
+        </div>
+    </div>
+    }
+
+
+
+
+    @*<div class="panel-heading">
+
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                       Demande en attente
+                    </div>
+                    <div class="card-table table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="thead-light">
+                                <tr>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center">Employé</th>
+                                    <th class="text-center">Date Debut</th>
+                                    <th class="text-center">Date Fin</th>
+                                    <th class="text-center">Motif</th>
+                                    <th class="text-center">Date Demande</th>
+                                    <th class="text-center">Type</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Demande)
+                                {
+                                    <tr>
+                                        <td><center>@Model.Demande.Count()</center></td>
+                                        @*<td><center>@Html.DisplayFor(modelItem => item.Id)</center></td>*@
+    @* <td><center><div class="heading mt-1">@Html.DisplayFor(modelItem => item.Employe.Nom) @Html.DisplayFor(modelItem => item.Employe.Prenom) </div></center></td>
+                                            <td><center><div class="heading mt-1">@item.DateDebut.Value.ToShortDateString()</div></center></td>
+                                            <td><center><div class="heading mt-1">@item.DateFin.Value.ToShortDateString()</div></center></td>
+                                            <td><center><div class="heading mt-1">@Html.DisplayFor(modelItem => item.Motif)</div></center></td>
+                                            <td><center><div class="heading mt-1">@item.DateDemande.Value.ToShortDateString()</div></center></td>
+                                            <td><center><div class="heading mt-1">@Html.DisplayFor(modelItem => item.Types.Nom)</div></center></td>
+
+                                            <td>
+                                                @Html.ActionLink("Accepter", "AccepterDemande", new { id = item.Id }) |
+                                                @Html.ActionLink("Refuser", "RefuserDemande", new { id = item.Id }) |
+                                                @Html.ActionLink("Detail", "DetailDemande", new { id = item.Id })
+                                            </td>
+
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>*@
+
+
+    @section Scripts{
+    <script>
+         $(document).ready(function () {
+             $('#datatables').DataTable({
+                 "pagingType": "full_numbers",
+                 "lengthMenu": [
+                     [10, 25, 50, -1],
+                     [10, 25, 50, "All"]
+                 ],
+                 responsive: true,
+                 language: {
+                     search: "_INPUT_",
+                     searchPlaceholder: "Search records",
+                 }
+
+             });
+             $(document).ready(function () {
+                 $('#myTable').DataTable();
+             });
+
+             var table = $('#datatables').DataTable();
+
+             // Edit record
+             table.on('click', '.edit', function () {
+                 $tr = $(this).closest('tr');
+
+                 var data = table.row($tr).data();
+                 alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+             });
+
+             // Delete a record
+             table.on('click', '.remove', function (e) {
+                 $tr = $(this).closest('tr');
+                 table.row($tr).remove().draw();
+                 e.preventDefault();
+             });
+
+             //Like record
+             table.on('click', '.like', function () {
+                 alert('You clicked on Like button');
+             });
+
+             $('.card .material-datatables label').addClass('form-group');
+         });
+
+    </script>
+    <script>
+            function sweet(id) {
+
+                swal({
+                    title: 'Confirmation',
+                    text: "Etes vous sur de vouloir Accepter cette demande?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirmer'
+                }).then((value) => {
+                    window.location.assign("/ChefProjet/TraiterDemande/AccepterDemande/" + id)
+
+                    swal(
+                        'Accepté!',
+                        'Demande accepté.',
+                        'success'
+                    )
+
+
+                })
+
+            }
+
+    </script>
+}

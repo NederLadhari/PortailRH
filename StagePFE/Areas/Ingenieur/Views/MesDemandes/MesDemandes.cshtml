@@ -1,0 +1,723 @@
+﻿@model StagePFE.Models.CongesViewModels
+@{
+    ViewBag.Title = "MesDemandes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CurrentController = "MesDemandes";
+}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+
+
+
+<link href="~/New/assets/assets-for-demo/js/swal-forms.css" rel="stylesheet" />
+    
+<script src="~/New/assets/assets-for-demo/js/swal-forms.js"></script>
+  
+
+
+
+
+<div class="content">
+  
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-danger card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <h4 class="card-title">Mes demandes</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="toolbar">
+                                <button class="btn btn-danger btn-round" data-toggle="modal" data-target="#myModall">
+                                    Ajouter
+                                </button>
+                                @*<button class="btn btn-danger btn-round" onclick="ajouter();">
+                                    Ajouter demande
+                                </button>*@
+                            </div>
+                            <div class="material-datatables">
+
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th class="font-weight-bold">Date Debut</th>
+                                            <th class="font-weight-bold">Date Fin</th>
+                                            <th class="font-weight-bold">Motif</th>
+                                            <th class="text-left font-weight-bold">Date </th>
+                                            <th class="font-weight-bold">Type</th>
+                                            <th class="font-weight-bold">Status</th>
+                                            @*<th class="font-weight-bold">Etat</th>*@
+                                            <th class="disabled-sorting text-right font-weight-bold">Action</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                           
+                                            <th>Date Debut</th>
+                                            <th>Date Fin</th>
+                                            <th>Motif</th>
+                                            <th>Date Demande</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            @*<th>Etat</th>*@
+                                            <th class="text-right">Action</th>
+
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+
+    @foreach (var item in Model.Demande)
+    {
+
+
+
+
+        <tr>
+            
+            <td>
+                @item.DateDebut.Value.ToShortDateString()
+            </td>
+            <td>@item.DateFin.Value.ToShortDateString()</td>
+
+
+            <td>@Html.DisplayFor(modelItem => item.Motif)</td>
+            <td>@item.DateDemande.Value.ToShortDateString()</td>
+            <td>@Html.DisplayFor(modelItem => item.Types.Nom)</td>
+
+            <td>@Html.DisplayFor(modelItem => item.Etat)</td>
+
+            <td class="td-actions text-right">
+               
+                
+                <button id="@item.Id" type="button" rel="tooltip" class="btn btn-danger btn-link" onclick="sweet(@item.Id);">
+                    <i class="material-icons">close</i>
+                </button>
+                @*<a href="#" class="btn btn-link btn-warning btn-just-icon edit"  ><i class="material-icons">dvr</i></a>*@
+                <button class="btn btn-link btn-warning btn-just-icon edit" data-toggle="modal" data-target="#L_@item.Id">
+                    <i class="material-icons">dvr</i>
+                </button>
+                @*<a href="@Url.Action("ModifierDemande","MesDemandes", new { id = item.Id })" data-toggle="modal" data-target="#myModall" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>*@
+               
+                
+            </td>
+        </tr>
+    }      </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end content-->
+            </div><!--  end card  -->
+        </div> <!-- end col-md-12 -->
+    </div> <!-- end row -->
+
+@foreach (var item in Model.Demande)
+{
+    <div class="modal fade" id="L_@item.Id" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">@*<h4 class="modal-title">Ajouter une nouvelle demande</h4>*@
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="material-icons">clear</i>
+                        
+                    </button>
+                </div>
+                <form action="/Ingenieur/MesDemandes/Modification" method="Post">
+                    <div class="row justify-content-center">
+                        
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                               
+                                <input type="text" class="form-control " name="Id" id="DateDebut" value="@item.Id">
+                            </div>
+                            <div class="form-group">
+                                <label for="DateDebut" class="bmd-label-floating">Date Début</label>
+                                <input type="text" class="form-control datepicker" value="@item.DateDebut" name="DateDebut" id="DateDebut"  required>
+                            </div>
+                            <div class="form-group">
+                                <label for="DateFin" class="bmd-label-floating">Date Fin</label>
+                                <input type="text" class="form-control datepicker" value="@item.DateFin" name="DateFin" id="DateFin" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Motif" class="bmd-label-floating">Motif</label>
+                                <input type="text" class="form-control" value="@item.Motif" name="motif" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Motif" class="bmd-label-floating">Motif</label>
+                                <input type="text" class="form-control" value="@item.Types.Nom" name="Type"required>
+                            </div>
+                            @*<div class="form-group">
+                               
+                                <select class="selectpicker" title="Single Select" data-size="7">
+                                    <option disabled selected>Types</option>
+                                    <option value="2">Maladie </option>
+                                    <option value="3">Congé Annuel</option>
+                                    <option value="4">Maternité</option>
+                                </select>
+
+                            </div>*@
+
+                        </div>
+                    </div>
+                    <div class="card-footer">
+
+                        <div class="ml-auto">
+
+                            <input type="submit" class="btn btn-finish btn-fill btn-danger btn-wd" name="finish" value="Terminer">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </form>
+               
+
+            </div>
+        </div>
+    </div>
+}
+
+    <!--Test Modal-->
+    @*<button type="button" rel="tooltip" class="btn btn-info btn-link" data-toggle="modal" data-target="#L">
+        <i class="material-icons">notes</i>
+    </button>*@
+    <div class="modal" id="L" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="material-icons">clear</i>
+
+                    </button>
+                    
+                    
+                    <div class="card ">
+
+                        <div class="card-header card-header-danger card-header-icon">
+                            
+                            <h4 class="card-title"></h4>
+                        </div>
+
+                        <div class="card-body ">
+
+
+
+                            <form class="form-horizontal" action="/Ingenieur/MesDemandes/AjouterConge" method="Post">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label text-dark">Date Début</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group has-default">
+                                            <input type="text" class="form-control datepicker" name="DateDebut" id="DateDebut" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label text-dark">Date fin</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control datepicker" name="DateFin" id="DateFin" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label text-dark">Motif</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group has-error">
+                                            <input type="text" class="form-control "  name="motif" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label text-dark">Type</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"  name="Type" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <button type="submit" class="btn btn-fill btn-danger">Confirmer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                       
+
+                        </div>
+
+
+
+                       
+                            
+                        
+                        
+                    </div>
+
+                </div>
+                </div>
+              
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+<!-- Classic Modal -->
+<div class="modal " id="myModall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+
+                </button>
+                <div class="col-sm-12">
+                    <h5 class="info-text"> Ajouter une nouvelle demande  </h5>
+                </div>
+            </div>
+            <div class="modal-body">
+
+                    <div class="card ">
+
+                    
+
+                    <div class="card-body ">
+
+                      
+
+                        <form class="form-horizontal" action="/Ingenieur/MesDemandes/AjouterConge" method="Post">
+                            <div class="row ">
+                                <label class="col-md-3 col-form-label text-dark">Date Début</label>
+                                <div class="col-md-9">
+                                    <div class="form-group has-default">
+                                        <input type="text" class="form-control datepicker" name="DateDebut" id="DateDebut" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-3 col-form-label text-dark">Date Fin</label>
+                                <div class="col-md-9">
+                                    <div class="form-group has-default">
+                                        <input type="text" class="form-control datepicker" name="DateFin" id="DateFin" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-3 col-form-label text-dark">Motif</label>
+                                <div class="col-md-9">
+                                    <div class="form-group has-default">
+                                        <input type="text" class="form-control" value="" name="motif" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-3 col-form-label text-dark">     </label>
+                                <div class="col-md-9">
+                                    <div class="form-group has-default">
+                                        @*<input type="text" class="form-control" value="" name="Type" required>*@
+                                        <select name="Type" class="selectpicker" data-style=" btn-round" title="Single Select" data-size="5">
+                                            <option disabled selected>Choisir un type</option>
+                                            <option value="Maladie">Maladie </option>
+                                            <option value="CongeAnnuel ">CongeAnnuel</option>
+                                            <option value="Maternite ">Maternite</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            @*<select class="selectpicker" title="Single Select" data-size="7">
+                <option disabled selected>Types</option>
+                <option value="2">Maladie </option>
+                <option value="3">Congé Annuel</option>
+                <option value="4">Maternité</option>
+            </select>*@
+                            <input type="submit" class="btn btn-finish btn-fill btn-danger btn-wd" name="finish" value="Confirmer">
+                        </form>
+                                </div>
+                                @*<div class="card-footer">
+
+                                    <div class="ml-auto">
+
+                                        <input type="submit" class="btn btn-finish btn-fill btn-danger btn-wd" name="finish" value="Confirmer">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>*@
+
+                           
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+</div>
+
+
+    
+
+<!-- Modal -->
+
+
+
+                                   
+
+
+
+
+
+    @*<div class="col-md-4">
+        <button class="btn btn-primary btn-block" onclick="showNotification('top','center')">Bottom Right</button>
+    </div>*@
+           
+@*<script src="~/Template/assets/js/jquery/jquery-3.1.1.min.js"></script>
+    <script src="~/Template/assets/js/jquery/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>*@
+
+
+@section Scripts{
+
+   
+
+        
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            $("#dateBegin").datepicker(function () {
+                dateFormat: 'dd-mm-yy'
+            });
+
+            $(".dateEnd").datepicker(function () {
+                dateFormat: 'dd-mm-yy'
+            });
+        });
+
+
+    </script>*@
+    <script>
+        $(document).ready(function () {
+            debugger
+             $('#datatables').DataTable({
+                 "pagingType": "full_numbers",
+                 "lengthMenu": [
+                     [10, 25, 50, -1],
+                     [10, 25, 50, "All"]
+                 ],
+                 responsive: true,
+                 language: {
+                     search: "_INPUT_",
+                     searchPlaceholder: "Search records",
+                 }
+
+             });
+             $(document).ready(function () {
+                 $('#myTable').DataTable();
+             });
+
+             var table = $('#datatables').DataTable();
+
+             // Edit record
+             table.on('click', '.edit', function () {
+                 $tr = $(this).closest('tr');
+
+                 var data = table.row($tr).data();
+                 //alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '' + data[3] + '\'s row.');
+                 //swal({
+                 //    title: 'Modifier demande',
+                 //    html:
+                 //    '<input id="swal-input1" class="swal2-input " value ='+data[1]+' >' +
+                 //    '<input id="swal-input2" class="swal2-input" value =' + data[2] +'>' +
+                 //    '<input id="swal-input3" class="swal2-input" value =' + data[3] +'>' +
+                 //    '<input id="swal-input4" class="swal2-input" value =' + data[5] +'>' ,
+                 //    preConfirm: function () {
+                 //        return new Promise(function (resolve) {
+                 //            resolve([
+                 //                $('#swal-input1').val(),
+                 //                $('#swal-input2').val(),
+                 //                $('#swal-input3').val(),
+                 //                $('#swal-input4').val()
+                 //            ])
+                 //        })
+                 //    },
+                 //    onOpen: function () {
+                 //        $('#swal-input1').focus()
+                 //    }
+                 //}).then(function (result) {
+                 //    var DateDebut = document.getElementById('swal-input1').value;
+                 //    var DateFin = document.getElementById('swal-input2').value;
+                 //    var Motif = document.getElementById('swal-input3').value;
+                 //    var Type = document.getElementById('swal-input4').value;
+                 //    window.location.assign("/Ingenieur/MesDemandes/Modification/" + data[0] + "?DateDebut=" + DateDebut + "&DateFin=" + DateFin + "&motif=" + Motif + "&Types="+Type)
+
+                 //    swal(
+                 //        'Réussie',
+                 //        'Modification réussie',
+                 //        'success'
+                 //    )
+
+                 //}).catch(swal.noop)
+
+
+             });
+
+             // Delete a record
+             table.on('click', '.remove', function (e) {
+                 $tr = $(this).closest('tr');
+                 table.row($tr).remove().draw();
+                 e.preventDefault();
+             });
+
+            
+
+             $('.card .material-datatables label').addClass('form-group');
+         });
+
+    </script>
+
+    <script>
+
+        /** Days to be disabled as an array */
+        var disableddates = ["05-15-2018"];
+
+        function DisableSpecificDates(date) {
+
+            var m = date.getMonth();
+            var d = date.getDate();
+            var y = date.getFullYear();
+
+            // First convert the date in to the mm-dd-yyyy format 
+            // Take note that we will increment the month count by 1 
+            var currentdate = (m + 1) + '-' + d + '-' + y;
+
+
+
+            // We will now check if the date belongs to disableddates array 
+            for (var i = 0; i < disableddates.length; i++) {
+
+                // Now check if the current date is in disabled dates array. 
+                if ($.inArray(currentdate, disableddates) != -1) {
+                    return [false];
+                }
+            }
+
+            // In case the date is not present in disabled array, we will now check if it is a weekend. 
+            // We will use the noWeekends function
+            var weekenddate = $.datepicker.noWeekends(date);
+            return weekenddate;
+
+        }
+
+
+
+
+        $(".datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd-mm-yy',
+            minDate: '0',
+            beforeShowDay: DisableSpecificDates
+        });</script>
+
+    <script>
+        $("#btSubmit").on("click", function (e) {
+            e.preventDefault();
+            debugger;
+            var dateEnd = $("#dateEnd").val().toString();
+            var form = document.getElementById("formReq");
+            form.submit();
+        });
+
+    </script>
+
+
+    <script>
+        function sweet(id) {
+           
+            swal({
+                title: 'Êtes-vous sûr de vouloir supprimer ?',
+                text: "Cette demande sera immédiatement supprimée.Cette action est irréversible!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirmer',
+                cancelButtonText: 'Annuler'
+            }).then((value) => {
+                window.location.assign("/MesDemandes/SupprimerDemande/"+id)
+                
+                swal(
+                    'Supprimer!',
+                    'Votre demande a été supprimer avec succès',
+                    'success'
+                )
+
+
+                })
+
+
+        }
+
+    </script>
+
+
+
+    <script>
+        function ajouter()
+        {
+            swal({
+                title: 'Ajouter une nouvelle demande',
+                html:
+                '<input id="swal-input1" class="swal2-input "   >' +
+                '<input id="swal-input2" class="swal2-input"  >' +
+                '<input id="swal-input3" class="swal2-input" >' +
+                '<input id="swal-input4" class="swal2-input" >',
+                preConfirm: function () {
+                    return new Promise(function (resolve) {
+                        resolve([
+                            $('#swal-input1').val(),
+                            $('#swal-input2').val(),
+                            $('#swal-input3').val(),
+                            $('#swal-input4').val()
+                        ])
+                    })
+                },
+                onOpen: function () {
+                    $('#swal-input1').focus()
+                }
+            }).then(function (result) {
+                var DateDebut = document.getElementById('swal-input1').value;
+                var DateFin = document.getElementById('swal-input2').value;
+                var Motif = document.getElementById('swal-input3').value;
+                var Type = document.getElementById('swal-input4').value;
+                window.location.assign("/Ingenieur/MesDemandes/AjouterConge/"  + "?DateDebut=" + DateDebut + "&DateFin=" + DateFin + "&motif=" + Motif + "&Types=" + Type)
+
+                swal(
+                    'Réussie',
+                    'Modification réussie',
+                    'success'
+                )
+
+            }).catch(swal.noop)
+
+
+        
+        }
+    </script>
+
+
+
+
+    <script>
+        function showNotification(from,align) {
+            type = ['', 'info', 'success', 'warning', 'danger', 'rose', 'primary'];
+
+            color = Math.floor((Math.random() * 6) + 1);
+
+            $.notify({
+                icon: "notifications",
+                message: "Votre demande a été enregistrer avec succès."
+
+            }, {
+                    type: type['warning'],
+                    timer: 3000,
+                    placement: {
+                        from: from,
+                        align: align
+                    }
+                });
+        }
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            //init DateTimePickers
+            md.initFormExtendedDatetimepickers();
+
+
+            // Sliders Init
+            md.initSliders();
+           
+           
+        });
+
+    </script>
+
+    <script>
+        var Edit = function (ID) {
+            $.ajaxSetup({ cache: false });
+            var EditUrl = "/Home/Edit/" + ID;
+            $("#MyModalContent").load(EditUrl, function () {
+                $("#MyModal").modal({
+                    //backdrop: 'static',
+                    keyboard: false
+                }, 'show');
+                bindForm(this);
+            });
+            return false;
+        }
+</script>
+}
+
+<script>function add(id) {
+        swal({
+            title: 'modifier demande',
+            html:
+            '<h2>Saisir email de l ingenieur</h2>' +
+            '<input id="swal-input1" class="swal2-input" autofocus placeholder="Email ingenieur">',
+            '<input id="swal-input1" class="swal2-input" autofocus placeholder="Email ingenieur">'
+        }).then((value) => {
+            var email = document.getElementById('swal-input1').value;
+            window.location.assign("/ProfilAdmin/AffecterMembre/" + id + "?email=" + email)
+
+            swal(
+                'Réussie',
+                'Nouveau membre ajouter a cette équipe',
+                'success'
+            )
+
+
+        })
+
+
+    }</script>
+
+
+<script type="text/javascript">
+    $('#myForm').on('submit', function (e) {
+        var firstName = $('#firstname');
+
+        // Check if there is an entered value
+        if (!firstName.val()) {
+            // Add errors highlight
+            firstName.closest('.form-group').removeClass('has-success').addClass('has-error');
+
+            // Stop submission of the form
+            e.preventDefault();
+        } else {
+            // Remove the errors highlight
+            firstName.closest('.form-group').removeClass('has-error').addClass('has-success');
+        }
+    });
+</script>

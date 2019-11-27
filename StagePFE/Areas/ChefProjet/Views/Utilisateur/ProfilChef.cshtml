@@ -1,0 +1,174 @@
+﻿@model StagePFE.Models.Employe
+@{
+    ViewBag.Title = "ProfilIngenieur";
+    Layout = "~/Views/Shared/_LayoutChef.cshtml";
+}
+
+<main class="main-content p-5" role="main">
+
+    <div class="card">
+
+
+        <div class="card-img"><img src="~/Table/img/deux.jpg" alt="user" style="width:100%" height="100"></div>
+        <div class="card-body pt-0">
+
+            <div class="text-center">
+                <br />
+
+                <div class="mb-3"><img class="wd-sm rounded-circle img-thumbnail" src="~/Table/img/user/01.jpg" alt="user"></div>
+                <div class="h3">@Html.DisplayFor(model => model.Nom) @Html.DisplayFor(model => model.Prenom)</div>
+                <h4>@Html.DisplayFor(model => model.Poste)</h4>
+                <p><em class="ion-briefcase mr-2"></em><small class="text-muted"></small></p>
+            </div>
+
+            @*<p><em class="ion-email mr-2"></em>@Html.DisplayFor(model => model.AspNetUsers.Email)</p>*@
+
+        </div>
+        <div class="card-footer text-center">
+            <div class="row text-center">
+                <div class="col">
+                    <h3 class="mt-0 text-bold">5</h3><small>Solde congé</small>
+                </div>
+                <div class="col">
+                    <h3 class="mt-0 text-bold">390</h3><small>Credit</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row mb-4">
+        <div class="col-md-6 mb-5">
+            <div class="card">
+                <div class="card-header">
+                    Informations personnelles
+                </div>
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <table class="table">
+
+                            <tbody>
+                                <tr>
+                                    <td><i class="batch-icon batch-icon-calendar"></i></td>
+                                    <td>@Html.DisplayNameFor(model => model.DateNaissance)</td>
+                                    <td>@Html.DisplayFor(model => model.DateNaissance)</td>
+
+                                </tr>
+                                <tr>
+                                    <td><i class="batch-icon batch-icon-calendar"></i></td>
+                                    <td>@Html.DisplayNameFor(model => model.DateRecrutement)</td>
+                                    <td>@Html.DisplayFor(model => model.DateRecrutement)</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="batch-icon batch-icon-mail-alt"></i></td>
+                                    <td>@Html.DisplayNameFor(model => model.AspNetUsers.Email)</td>
+                                    <td>@Html.DisplayFor(model => model.AspNetUsers.Email)</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="batch-icon batch-icon-timeline"></i></td>
+                                    <td>@Html.DisplayNameFor(model => model.Telephone)</td>
+                                    <td>@Html.DisplayFor(model => model.Telephone)</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="batch-icon batch-icon-home"></i></td>
+                                    <td>@Html.DisplayNameFor(model => model.Adresse)</td>
+                                    <td>@Html.DisplayFor(model => model.Adresse)</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="batch-icon batch-icon-user-card"></i></td>
+                                    <td>@Html.DisplayNameFor(model => model.Cin)</td>
+                                    <td>@Html.DisplayFor(model => model.Cin)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) 
+                        
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12 mb-5">
+                    <div class="card">
+                        <div class="card-header">
+
+                            Team Members
+                        </div>
+                        <div class="card-media-list">
+                            <div class="media clickable" data-qp-link="profiles-member-profile.html">
+                                <div class="profile-picture bg-gradient bg-primary has-message float-right d-flex mr-3">
+                                    <img src="~/Template/assets/img/profile-pic.jpg" width="44" height="44">
+                                </div>
+                                <div class="media-body">
+                                    <div class="heading mt-1">
+                                        Mejri Meriam
+                                    </div>
+                                    <div class="subtext">jquinn897</div>
+                                </div>
+                            </div>
+
+                            <div class="media clickable" data-qp-link="profiles-member-profile.html">
+                                <div class="profile-picture bg-gradient bg-primary has-message float-right d-flex mr-3">
+                                    <img src="~/Template/assets/img/profile-pic-3.jpg" width="44" height="44">
+                                </div>
+                                <div class="media-body">
+                                    <div class="heading mt-1">
+                                        Baccouche Moez
+                                    </div>
+                                    <div class="subtext">tealc</div>
+                                </div>
+                            </div>
+
+                            <div class="media clickable" data-qp-link="profiles-member-profile.html">
+                                <div class="profile-picture bg-gradient bg-secondary float-right d-flex mr-3">
+                                    <img src="~/Template/assets/img/profile-pic-2.jpg" width="44" height="44">
+                                </div>
+                                <div class="media-body">
+                                    <div class="heading mt-1">
+                                        Bouhlel Chaarana Emna
+                                    </div>
+                                    <div class="subtext">samanthac</div>
+                                </div>
+                            </div>
+
+                            <div class="media clickable" data-qp-link="profiles-member-profile.html">
+                                <div class="profile-picture bg-gradient bg-primary has-message float-right d-flex mr-3">
+                                    <img src="~/Template/assets/img/profile-pic.jpg" width="44" height="44">
+                                </div>
+                                <div class="media-body">
+                                    <div class="heading mt-1">
+                                        Johanna Quinn
+                                    </div>
+                                    <div class="subtext">jquinn897</div>
+                                </div>
+                            </div>
+
+                            <div class="media clickable" data-qp-link="profiles-member-profile.html">
+                                <div class="profile-picture bg-gradient bg-primary has-message float-right d-flex mr-3">
+                                    <img src="~/Template/assets/img/profile-pic-3.jpg" width="44" height="44">
+                                </div>
+                                <div class="media-body">
+                                    <div class="heading mt-1">
+                                        Teal'c Jaffa
+                                    </div>
+                                    <div class="subtext">tealc</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+

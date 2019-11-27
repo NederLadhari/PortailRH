@@ -1,0 +1,91 @@
+﻿@model StagePFE.Models.CongesViewModels
+@{
+    ViewBag.Title = "CalendrierIngenieur";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CurrentController = "Calendrier";
+}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css"></script>
+
+
+<div class="content">
+    <div class="container-fluid">
+        
+
+        <div class="row">
+            <div class="col-md-10 ml-auto mr-auto">
+                <div class="card card-calendar">
+                    <div class="card-body ">
+                        <div id='calendar'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{ 
+
+
+<script>
+    $(function () {
+
+        // page is now ready, initialize the calendar...
+
+        debugger
+
+        $('#calendar').fullCalendar({
+            // put your options and callbacks here
+    
+
+            events: [
+           @foreach (var item in Model.Demande)
+           {
+               if(item.Types.Nom=="Maladie"){
+                <text>
+                    {
+                    title: '@item.Types.Nom ',
+                    start: new Date( @item.DateDebut.Value.Year, @item.DateDebut.Value.Month-1,@item.DateDebut.Value.Day, 12, 0),
+                    end: new Date(@item.DateFin.Value.Year,@item.DateFin.Value.Month-1, @item.DateFin.Value.Day+1, 14, 0),
+                    backgroundColor: "#81d8d0",
+                    borderColor:"#81d8d0",
+                    allDay: true
+                    },
+                </text>
+               }
+               if(item.Types.Nom== "Maternite")
+               {
+                <text>
+                    {
+                    title: '@item.Types.Nom',
+                    start: new Date( @item.DateDebut.Value.Year, @item.DateDebut.Value.Month-1,@item.DateDebut.Value.Day, 12, 0),
+                    end: new Date(@item.DateFin.Value.Year,@item.DateFin.Value.Month-1, @item.DateFin.Value.Day+1, 14, 0),
+                    backgroundColor: "#ffc0cb",
+                    borderColor: "#ffc0cb",
+                    allDay: true
+                    },
+                </text>
+               }
+               if(item.Types.Nom== "CongeAnnuel")
+               {
+                <text>
+                    {
+                    title: '@item.Types.Nom  ',
+                    start: new Date( @item.DateDebut.Value.Year, @item.DateDebut.Value.Month-1,@item.DateDebut.Value.Day, 12, 0),
+                    end: new Date(@item.DateFin.Value.Year,@item.DateFin.Value.Month-1, @item.DateFin.Value.Day+1, 14, 0),
+                   
+                    allDay: true
+                    },
+                </text>
+                   }
+               }
+            ]
+        })
+
+    });
+</script>
+}

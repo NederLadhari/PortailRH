@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+}
+
+
+
+
+ @*Modal 
+<button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sizes">Ajouter</button>
+
+<div class="modal fade bd-example-modal-sizes" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter une nouvelle demande de congé</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               @using (Html.BeginForm("AjouterConge", "Demandes", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+               { @Html.AntiForgeryToken()
+
+                
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DateDebut, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.DateDebut, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DateFin, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.DateFin, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Nombre, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Motif, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Motif, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            @Html.LabelFor(m => m.Type, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.EnumDropDownListFor(model => model.NomType)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                </div> 
+                            
+                        </div>
+               }
+
+            </div>
+            
+        </div>
+    </div>
+</div>*@
+               
+            

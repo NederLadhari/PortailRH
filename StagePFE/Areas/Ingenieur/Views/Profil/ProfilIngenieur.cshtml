@@ -1,0 +1,177 @@
+﻿@*@model StagePFE.Models.Employe*@
+@model StagePFE.Areas.Ingenieur.Models.ProfilViewModel
+@{
+    ViewBag.Title = "ProfilIngenieur";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-danger">
+                        <div class="card-icon">
+                            <i class="material-icons">perm_identity</i>
+                        </div>
+                        <h4 class="card-title">Informations personnelles</h4>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <form action="/Ingenieur/Profil/Modification" method="Post">
+@foreach (var item in Model.Employes)
+{
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+
+                                        <label class="bmd-label-floating">Email (disabled)</label>
+                                        <input type="text" class="form-control" disabled value="@Html.DisplayFor(modelItem => item.AspNetUsers.Email)">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Date de naissance</label>
+                                        <input type="text" class="form-control" disabled value="@Html.DisplayFor(modelItem => item.DateNaissance)">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Date de recrutement</label>
+                                        <input type="email" class="form-control" disabled value="@Html.DisplayFor(modelItem => item.DateRecrutement)">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Cin</label>
+                                        <input type="text" class="form-control"  name ="cin"  value="@Html.DisplayFor(modelItem => item.Cin)">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Telephone</label>
+                                        <input type="text" class="form-control" name="tel" value="@Html.DisplayFor(modelItem => item.Telephone)">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Adresse</label>
+                                        <input type="text" class="form-control" name="adresse" value="@Html.DisplayFor(modelItem => item.Adresse)">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <button type="submit" class="btn btn-danger pull-right">Modifier</button>
+                            <div class="clearfix"></div>
+}
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="#pablo">
+@foreach (var item in Model.Employes)
+{
+                            if (item.Sexe.Equals("Homme"))
+                            {
+                            <img class="img" src="~/New/assets/img/faces/marc.jpg" />}
+                            else if (item.Sexe.Equals("Femme"))
+                            {
+                                <img class="img" src="~/New/assets/img/faces/avatar.jpg" />
+                            }
+}
+                        </a>
+                    </div>
+
+                    <div class="card-body">
+    @foreach (var item in Model.Employes)
+        {
+                        <h6 class="card-category text-gray">@Html.DisplayFor(modelItem => item.Poste)</h6>
+                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.Nom) @Html.DisplayFor(modelItem => item.Prenom)</h4>
+                        @*<p class="card-description">
+                            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                        </p>*@
+                        }
+                        <br />
+                        @foreach (var items in Model.Comptes)
+                        {
+                        <a href="#pablo" class="btn btn-success btn-round">Solde <br />@Html.DisplayFor(modelItem => items.Solde)</a>
+                        <a href="#pablo" class="btn btn-danger btn-round">Credit <br /> @Html.DisplayFor(modelItem => items.Credit)</a> }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12 mb-5">
+                    <div class="card">
+
+                            <div class="card-header card-header-icon card-header-danger">
+                                <div class="card-icon">
+                                    <i class="material-icons">list</i>
+                                </div>
+                                <h4 class="card-title"> Membres de mon équipe</h4>
+
+                            </div>
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <table class="table">
+                                   
+                                    <tbody>
+                                        @foreach (var item in Model.equipes)
+                                        {
+
+                                            <tr>
+
+
+                                                <td>
+                                                    @if (item.Sexe.Equals("Homme"))
+                                                    {
+                                                        <img src="~/New/Images/males_male_avatar_man_people_faces_18357.png" width="44" height="44">}
+                                                    else if (item.Sexe.Equals("Femme"))
+                                                    {
+                                                        <img src="~/New/Images/females_female_avatar_woman_people_faces_18409.png" width="44" height="44">
+                                                    }
+                                                </td>
+                                                <td><label class="bmd-label-floating">@Html.DisplayFor(modelItem => item.Nom) @Html.DisplayFor(modelItem => item.Prenom)</label></td>
+                                            </tr> }
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+                        </div>
+                        </div>
+                                </div>
+</div>
+                            </div>
+                  </div>
+            
+
+
+

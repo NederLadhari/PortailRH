@@ -1,0 +1,246 @@
+﻿
+@{
+    ViewBag.Title = "Utilisateurs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CurrentController = "Utilisateurs";
+}
+
+@model IEnumerable<StagePFE.Models.Employe>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Liste des utilisateurs</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="toolbar">
+
+                        </div>
+                        <div class="material-datatables">
+
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                <thead>
+                                    <tr>
+
+                                    <tr>
+                                        <th class="disabled-sorting "></th>
+                                        <th class="font-weight-bold">
+                                            Employé
+                                        </th>
+                                        <th class="font-weight-bold">
+                                            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+                                        </th>
+                                        <th class="font-weight-bold">
+                                            Recrutement
+                                        </th>
+
+
+                                        <th class="font-weight-bold">
+                                            @Html.DisplayNameFor(model => model.Telephone)
+                                        </th>
+                                        <th class="font-weight-bold">
+                                            @Html.DisplayNameFor(model => model.Adresse)
+                                        </th>
+                                        <th class="disabled-sorting text-right font-weight-bold">
+                                            Action
+                                        </th>
+
+
+
+                                    </tr>
+
+
+
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            Employé
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+                                        </th>
+                                        <th>
+                                            Recrutement
+                                        </th>
+
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Telephone)
+                                        </th>
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.Adresse)
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+
+
+
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+
+
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                @if (item.Sexe.Equals("Femme"))
+                                                { <center>
+                                                    <img src="~/New/Images/females_female_avatar_woman_people_faces_18409.png " width="60" height="60" />
+                                                </center>}
+                                                @if (item.Sexe.Equals("Homme"))
+                                                {
+                                                    <center>
+
+
+                                                        <img src="~/New/Images/males_male_avatar_man_people_faces_18357.png" width="60" height="60" />
+                                                    </center> }
+                                            </td>
+                                            <td>
+
+                                                <div class="media">
+                                                    <div class="profile-picture bg-gradient bg-primary has-message float-right d-flex mr-3">
+
+                                                        @*<img src="~/Template/assets/img/profile-pic.jpg" width="44" height="44">*@
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="heading mt-1">
+                                                            @Html.DisplayFor(modelItem => item.Nom)
+
+
+                                                            @Html.DisplayFor(modelItem => item.Prenom)
+                                                        </div>
+                                                        <small>@Html.DisplayFor(modelItem => item.Poste)</small>
+
+                                                    </div>
+                                                </div>
+
+                                            </td>
+
+                                            <td>
+                                                <a href="#">@Html.DisplayFor(modelItem => item.AspNetUsers.Email)</a>
+
+                                            </td>
+
+                                            <td><center><div class="heading mt-1">@item.DateRecrutement.Value.ToShortDateString()</div></center></td>
+
+                                            <td>
+                                                <center>
+                                                    <div class="heading mt-1">
+                                                        @Html.DisplayFor(modelItem => item.Telephone)
+                                                    </div>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <div class="heading mt-1">
+                                                        @Html.DisplayFor(modelItem => item.Adresse)
+                                                    </div>
+                                                </center>
+                                            </td>
+                                            <td class="td-actions text-right">
+
+                                                <button id="@item.Id" type="button" rel="tooltip" class="btn btn-danger btn-link" onclick="sweet(@item.Id);">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                                <a href="#" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end content-->
+        </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#datatables').DataTable({
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search records",
+                }
+
+            });
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+            });
+
+            var table = $('#datatables').DataTable();
+
+            // Edit record
+            table.on('click', '.edit', function () {
+                $tr = $(this).closest('tr');
+
+                var data = table.row($tr).data();
+                alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+            });
+
+            // Delete a record
+            table.on('click', '.remove', function (e) {
+                $tr = $(this).closest('tr');
+                table.row($tr).remove().draw();
+                e.preventDefault();
+            });
+
+            //Like record
+            table.on('click', '.like', function () {
+                alert('You clicked on Like button');
+            });
+
+            $('.card .material-datatables label').addClass('form-group');
+        });
+
+    </script>
+    <script>
+        function sweet(id) {
+
+            swal({
+                title: 'Êtes-vous sûr de vouloir supprimer ?',
+                text: "Cet employé sera immédiatement supprimée.Cette action est irréversible!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((value) => {
+                window.location.assign("/ProfilAdmin/SupprimerUtilisateur/" + id)
+
+                swal(
+                    'Supprimer!',
+                    'Employé a été supprimer avec succès.',
+                    'success'
+                )
+
+
+            })
+
+        }
+
+    </script>
+
+
+
+}

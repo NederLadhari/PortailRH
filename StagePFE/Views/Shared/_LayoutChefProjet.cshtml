@@ -1,0 +1,339 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from base5builder.com/livedemo/quillpro/v1.6/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 22:26:35 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+    <link rel="icon" href="assets/img/favicon.png">
+
+    <title>DOT-IT:E-BUSINESS SOLUTIONS</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
+
+    <!-- CSS - REQUIRED - START -->
+    <!-- Batch Icons -->
+    <link href="~/Template/assets/fonts/batch-icons/css/batch-icons.css" rel="stylesheet" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Template/assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Material Design Bootstrap -->
+    <link href="~/Template/assets/css/bootstrap/mdb.min.css" rel="stylesheet" />
+
+
+    <!-- Custom Scrollbar -->
+    <link href="~/Template/assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+
+    <!-- Hamburger Menu -->
+    <link href="~/Template/assets/css/hamburgers/hamburgers.css" rel="stylesheet" />
+
+
+    <!-- CSS - REQUIRED - END -->
+    <!-- CSS - OPTIONAL - START -->
+    <!-- Font Awesome -->
+    <link href="~/Template/assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="~/Template/assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- JVMaps -->
+    <link href="~/Template/assets/plugins/jvmaps/jqvmap.min.css" rel="stylesheet" />
+
+    <!-- CSS - OPTIONAL - END -->
+    <!-- QuillPro Styles -->
+
+    <link href="~/Template/assets/css/quillpro/quillpro.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="px-0 bg-dark bg-gradient sidebar">
+                <ul class="nav nav-pills flex-column">
+                    <li class="logo-nav-item">
+                        <a class="navbar-brand" href="#">
+
+                            <img src="~/Template/assets/img/logodotit.png" width="160" height="60" alt="QuillPro" />
+                        </a>
+
+                    </li>
+                    <li>
+                        <h6 class="nav-header">General</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("DashboardChefProjet","DashboardChef")">
+                            <i class="batch-icon batch-icon-browser-alt"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link nav-parent" href="#">
+                            <i class="batch-icon batch-icon-layout-content-left"></i>
+                            Mes Demandes
+                        </a>
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("MesDemandes","TraiterDemande")">Mes Demandes </a>
+
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("EnAttente","TraiterDemande")">En attente </a>
+
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("HistoriqueChef","TraiterDemande")">Historique</a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-parent" href="#">
+                            <i class="batch-icon batch-icon-users"></i>
+                            Utilisateurs
+                        </a>
+                        <ul class="nav nav-pills flex-column">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("ProfilChef","Utilisateur")">Profil</a>
+                            </li>
+
+                            
+                            
+
+
+                        </ul>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-parent" href="#">
+                            <i class="batch-icon batch-icon-list"></i>
+                            Equipes
+                        </a>
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("ListeEquipe","MonEquipe")">Mon équipe</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("NouveauMembre","Equipe")">Ajouter</a>
+                            </li>
+
+
+                        </ul>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="calendar.html">
+                            <i class="batch-icon batch-icon-calendar"></i>
+                            Calendrier
+                        </a>
+                    </li>
+
+                    
+
+                </ul>
+            </nav>
+            <div class="right-column">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                    <a class="navbar-brand d-block d-sm-block d-md-block d-lg-none" href="#">
+
+                        <img src="~/Template/assets/img/logo-dark.png" width="145" height="32" alt="QuillPro" />
+                    </a>
+                    <button class="hamburger hamburger--slider" type="button" data-target=".sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle Sidebar">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                    <!-- Added Mobile-Only Menu -->
+                    <ul class="navbar-nav ml-auto mobile-only-control d-block d-sm-block d-md-block d-lg-none">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbar-notification-search-mobile" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                                <i class="batch-icon batch-icon-search"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-fullscreen" aria-labelledby="navbar-notification-search-mobile">
+                                <li>
+                                    <form class="form-inline my-2 my-lg-0 no-waves-effect">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary btn-gradient waves-effect waves-light" type="button">
+                                                    <i class="batch-icon batch-icon-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!--  DEPRECATED CODE:
+                        <div class="navbar-collapse" id="navbarSupportedContent">
+                    -->
+                    <!-- USE THIS CODE Instead of the Commented Code Above -->
+                    <!-- .collapse added to the element -->
+                    <div class="collapse navbar-collapse" id="navbar-header-content">
+                        <ul class="navbar-nav navbar-language-translation mr-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbar-dropdown-menu-link" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                                    <i class="batch-icon batch-icon-book-alt-"></i>
+                                    Français
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbar-dropdown-menu-link">
+                                    <li><a class="dropdown-item" href="#">English</a></li>
+                                    <li><a class="dropdown-item" href="#">Deutsche</a></li>
+                                    <li><a class="dropdown-item" href="#">Español</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav navbar-notifications float-right">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbar-notification-search" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                                    <i class="batch-icon batch-icon-search"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-fullscreen" aria-labelledby="navbar-notification-search">
+                                    <li>
+                                        <form class="form-inline my-2 my-lg-0 no-waves-effect">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary btn-gradient waves-effect waves-light" type="button">Search</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle no-waves-effect" id="navbar-notification-calendar" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                                    <i class="batch-icon batch-icon-calendar"></i>
+
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right dropdown-menu-md" aria-labelledby="navbar-notification-calendar">
+                                    <li class="media">
+
+
+
+                                    </li>
+
+
+
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+
+
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ml-5 navbar-profile">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbar-dropdown-navbar-profile" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                                    <div class="profile-name">
+                                        @User.Identity.Name
+                                    </div>
+                                    <div class="profile-picture bg-gradient bg-primary has-message float-right">
+
+                                        <img src="~/Template/assets/img/profile-pic-6.jpg" width="44" height="44" />
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-navbar-profile">
+                                    <li><a class="dropdown-item" href="profiles-member-profile.html">Profile</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="mail-inbox.html">
+                                            Messages
+
+                                        </a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="profiles-member-profile.html">Settings</a></li>
+                                    <li>@Html.Partial("~/Views/Shared/_LoginPartial.cshtml")</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <main class="main-content p-5" role="main">
+
+
+                    @RenderBody()
+
+
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS - REQUIRED START -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Bootstrap core JavaScript -->
+    <!-- JQuery -->
+    <script src="~/Template/assets/js/jquery/jquery-3.1.1.min.js"></script>
+
+    <!-- Popper.js - Bootstrap tooltips -->
+    <script src="~/Template/assets/js/bootstrap/popper.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Template/assets/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script src="~/Template/assets/js/bootstrap/mdb.min.js"></script>
+
+    <!-- Velocity -->
+    <script src="~/Template/assets/plugins/velocity/velocity.ui.min.js"></script>
+    <script src="~/Template/assets/plugins/velocity/velocity.min.js"></script>
+
+    <!-- Custom Scrollbar -->
+    <script src="~/Template/assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!-- jQuery Visible -->
+    <script src="~/Template/assets/plugins/jquery_visible/jquery.visible.min.js"></script>
+
+    <!-- jQuery Visible -->
+    <script src="~/Template/assets/plugins/jquery_visible/jquery.visible.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="~/Template/assets/js/misc/ie10-viewport-bug-workaround.js"></script>
+
+
+    <!-- SCRIPTS - REQUIRED END -->
+    <!-- SCRIPTS - OPTIONAL START -->
+    <!-- ChartJS -->
+    <script type="text/javascript" src="assets/plugins/chartjs/chart.bundle.min.js"></script>
+    <!-- JVMaps -->
+    <script src="~/Template/assets/plugins/jvmaps/jquery.vmap.min.js"></script>
+    <script src="~/Template/assets/plugins/jvmaps/maps/jquery.vmap.usa.js"></script>
+
+    <!-- Image Placeholder -->
+    <script src="~/Template/assets/js/misc/holder.min.js"></script>
+    <!-- SCRIPTS - OPTIONAL END -->
+    <!-- QuillPro Scripts -->
+    <script src="~/Template/assets/js/scripts.js"></script>
+    @Scripts.Render("~/Scripts/bootstrap")
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+
+<!-- Mirrored from base5builder.com/livedemo/quillpro/v1.6/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Apr 2018 22:28:03 GMT -->
+</html>

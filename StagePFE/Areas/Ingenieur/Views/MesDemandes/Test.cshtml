@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "MesDemandes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a class="btn btn-danger" onclick="SendEmail()"> Click to Send Email</a>
+
+
+@section Scripts{
+<script>
+    
+    var SendEmail = function () {
+        $.ajax({
+            
+            type: "post",
+            url: "/MesDemandes/SendMailToUser",
+            succes: function (data) {
+                alert("Success");
+            }
+        })
+    }
+    </script>
+
+
+
+}
